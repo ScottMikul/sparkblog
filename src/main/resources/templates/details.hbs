@@ -1,0 +1,40 @@
+{{#partial "content"}}
+    <section>
+        <div class="container">
+            <div class="entry-list single">
+                <article>
+                    <h1>{{entry.title}}</h1>
+                    <time >{{entry.date}}</time>
+                    <div class="entry">
+                        {{entry.content}}
+                        <p><a class="link" href="/edit/{{entry.slug}}">Edit Entry</a></p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section class="entry-comments">
+        <div class="container">
+            <h2>Comments</h2>
+            {{#each entry.comments}}
+                <div class="comment">
+                    <strong>{{name}}</strong>
+                    <time >{{date}}</time>
+                    <p>{{message}}</p>
+                </div>
+            {{/each}}
+
+            <div class="new-comment">
+                <form method="post" action="/entry/{{entry.slug}}/comment">
+                    <label for="name"> Name</label>
+                    <input type="text" name="name"><br>
+                    <label for="comment">Comment</label>
+                    <textarea rows="5" name="comment"></textarea>
+                    <input type="submit" value="Post Comment" class="button">
+                </form>
+            </div>
+        </div>
+    </section>
+{{/partial}}
+
+{{> base.hbs}}
